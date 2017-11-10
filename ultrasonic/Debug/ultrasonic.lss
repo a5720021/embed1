@@ -1,0 +1,487 @@
+
+ultrasonic.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000358  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002e4  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000005  00800100  00800100  00000358  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000358  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000388  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000058  00000000  00000000  000003c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000009f0  00000000  00000000  00000420  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000007f8  00000000  00000000  00000e10  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000003e4  00000000  00000000  00001608  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000c4  00000000  00000000  000019ec  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000044a  00000000  00000000  00001ab0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000021f  00000000  00000000  00001efa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000048  00000000  00000000  00002119  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 f2 00 	jmp	0x1e4	; 0x1e4 <__vector_10>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a5 30       	cpi	r26, 0x05	; 5
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 bb 00 	call	0x176	; 0x176 <main>
+  88:	0c 94 70 01 	jmp	0x2e0	; 0x2e0 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <USART_Transmit>:
+volatile uint16_t Capt1;				//Variable holding timestamp
+volatile uint16_t time_echo;			//Value to send time capture
+
+void USART_Transmit(unsigned char data){		//Send Data via USART0
+	/* Wait for empty transmit buffer */ 
+	while ( !(UCSR0A & (1<< UDRE0)) );
+  90:	e0 ec       	ldi	r30, 0xC0	; 192
+  92:	f0 e0       	ldi	r31, 0x00	; 0
+  94:	90 81       	ld	r25, Z
+  96:	95 ff       	sbrs	r25, 5
+  98:	fd cf       	rjmp	.-6      	; 0x94 <USART_Transmit+0x4>
+	/* Put data into buffer, sends the */ 
+	UDR0 = data ; 
+  9a:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+  9e:	08 95       	ret
+
+000000a0 <USART_Init>:
+}
+
+void USART_Init(unsigned int ubrr){				//Setup UART
+		/*Set baud rate */ /*Set baud rate */
+		UBRR0H = (unsigned char )( ubrr>> 8);
+  a0:	90 93 c5 00 	sts	0x00C5, r25	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
+		UBRR0L = (unsigned char )ubrr;
+  a4:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+		UCSR0A &= 0xFD;
+  a8:	e0 ec       	ldi	r30, 0xC0	; 192
+  aa:	f0 e0       	ldi	r31, 0x00	; 0
+  ac:	80 81       	ld	r24, Z
+  ae:	8d 7f       	andi	r24, 0xFD	; 253
+  b0:	80 83       	st	Z, r24
+		//Enable receiver and transmitter */ 
+		UCSR0B = (1<< RXEN0)|( 1<< TXEN0);
+  b2:	88 e1       	ldi	r24, 0x18	; 24
+  b4:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7e00c1>
+		/* Set frame format: */
+		UCSR0C = (3<<UCSZ00); 
+  b8:	86 e0       	ldi	r24, 0x06	; 6
+  ba:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7e00c2>
+  be:	08 95       	ret
+
+000000c0 <serial_print>:
+}
+
+void serial_print(volatile uint16_t text){		//Print number via UART
+  c0:	cf 93       	push	r28
+  c2:	df 93       	push	r29
+  c4:	00 d0       	rcall	.+0      	; 0xc6 <serial_print+0x6>
+  c6:	00 d0       	rcall	.+0      	; 0xc8 <serial_print+0x8>
+  c8:	00 d0       	rcall	.+0      	; 0xca <serial_print+0xa>
+  ca:	cd b7       	in	r28, 0x3d	; 61
+  cc:	de b7       	in	r29, 0x3e	; 62
+  ce:	9e 83       	std	Y+6, r25	; 0x06
+  d0:	8d 83       	std	Y+5, r24	; 0x05
+	char buff[4];
+	int dis = text*(1024/16)/58;			//convert signal to distance
+  d2:	2d 81       	ldd	r18, Y+5	; 0x05
+  d4:	3e 81       	ldd	r19, Y+6	; 0x06
+    } else if (__radix < 2 || __radix > 36) {
+	*__s = 0;
+	return __s;
+    } else {
+	extern char *__itoa_ncheck (int, char *, unsigned char);
+	return __itoa_ncheck (__val, __s, __radix);
+  d6:	00 24       	eor	r0, r0
+  d8:	36 95       	lsr	r19
+  da:	27 95       	ror	r18
+  dc:	07 94       	ror	r0
+  de:	36 95       	lsr	r19
+  e0:	27 95       	ror	r18
+  e2:	07 94       	ror	r0
+  e4:	32 2f       	mov	r19, r18
+  e6:	20 2d       	mov	r18, r0
+  e8:	af e9       	ldi	r26, 0x9F	; 159
+  ea:	b6 e4       	ldi	r27, 0x46	; 70
+  ec:	0e 94 2c 01 	call	0x258	; 0x258 <__umulhisi3>
+  f0:	4a e0       	ldi	r20, 0x0A	; 10
+  f2:	be 01       	movw	r22, r28
+  f4:	6f 5f       	subi	r22, 0xFF	; 255
+  f6:	7f 4f       	sbci	r23, 0xFF	; 255
+  f8:	92 95       	swap	r25
+  fa:	82 95       	swap	r24
+  fc:	8f 70       	andi	r24, 0x0F	; 15
+  fe:	89 27       	eor	r24, r25
+ 100:	9f 70       	andi	r25, 0x0F	; 15
+ 102:	89 27       	eor	r24, r25
+ 104:	0e 94 3b 01 	call	0x276	; 0x276 <__itoa_ncheck>
+	itoa(dis, buff, 10);					//convert integer to ascii (char array)
+	for(int i=0;i<sizeof(buff)-1;i++){		//loop print value
+		USART_Transmit(buff[i]);
+ 108:	89 81       	ldd	r24, Y+1	; 0x01
+ 10a:	0e 94 48 00 	call	0x90	; 0x90 <USART_Transmit>
+ 10e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 110:	0e 94 48 00 	call	0x90	; 0x90 <USART_Transmit>
+ 114:	8b 81       	ldd	r24, Y+3	; 0x03
+ 116:	0e 94 48 00 	call	0x90	; 0x90 <USART_Transmit>
+	}
+	USART_Transmit('\n');					//new line when finished
+ 11a:	8a e0       	ldi	r24, 0x0A	; 10
+ 11c:	0e 94 48 00 	call	0x90	; 0x90 <USART_Transmit>
+}
+ 120:	26 96       	adiw	r28, 0x06	; 6
+ 122:	0f b6       	in	r0, 0x3f	; 63
+ 124:	f8 94       	cli
+ 126:	de bf       	out	0x3e, r29	; 62
+ 128:	0f be       	out	0x3f, r0	; 63
+ 12a:	cd bf       	out	0x3d, r28	; 61
+ 12c:	df 91       	pop	r29
+ 12e:	cf 91       	pop	r28
+ 130:	08 95       	ret
+
+00000132 <timer0_init>:
+
+void timer0_init(void)							//Set Timer0 for Trigger
+{
+	TCCR0A = 0x00;		// set up timer register TCCR0A
+ 132:	14 bc       	out	0x24, r1	; 36
+	TCCR0B = 0x02;		// set up timer register TCCR0B prescaler 8
+ 134:	82 e0       	ldi	r24, 0x02	; 2
+ 136:	85 bd       	out	0x25, r24	; 37
+	TCNT0 = 0;
+ 138:	16 bc       	out	0x26, r1	; 38
+ 13a:	08 95       	ret
+
+0000013c <timer1_init>:
+}
+
+void timer1_init(void)							//Set Timer1 for input capture
+{
+	TCNT1 = 0;			//Set Initial Timer value
+ 13c:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7e0085>
+ 140:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7e0084>
+	TCCR1B = 0x45;		// capture on rising edge, prescalar 1024
+ 144:	85 e4       	ldi	r24, 0x45	; 69
+ 146:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7e0081>
+	TIMSK1 = 0x21;		//Enable input capture and overflow interrupts
+ 14a:	81 e2       	ldi	r24, 0x21	; 33
+ 14c:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7e006f>
+	sei();				//Enable global interrupts
+ 150:	78 94       	sei
+ 152:	08 95       	ret
+
+00000154 <send_trigger>:
+}
+
+void send_trigger(void){		//Send Trigger signal 10us and wait 500ms for next
+	if(PORTB != 0x02){
+ 154:	85 b1       	in	r24, 0x05	; 5
+ 156:	82 30       	cpi	r24, 0x02	; 2
+ 158:	49 f0       	breq	.+18     	; 0x16c <send_trigger+0x18>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 15a:	2f e9       	ldi	r18, 0x9F	; 159
+ 15c:	86 e8       	ldi	r24, 0x86	; 134
+ 15e:	91 e0       	ldi	r25, 0x01	; 1
+ 160:	21 50       	subi	r18, 0x01	; 1
+ 162:	80 40       	sbci	r24, 0x00	; 0
+ 164:	90 40       	sbci	r25, 0x00	; 0
+ 166:	e1 f7       	brne	.-8      	; 0x160 <send_trigger+0xc>
+ 168:	00 c0       	rjmp	.+0      	; 0x16a <send_trigger+0x16>
+ 16a:	00 00       	nop
+		_delay_ms(500);
+	}
+	PORTB ^= 0x02;				// toggle port B
+ 16c:	95 b1       	in	r25, 0x05	; 5
+ 16e:	82 e0       	ldi	r24, 0x02	; 2
+ 170:	89 27       	eor	r24, r25
+ 172:	85 b9       	out	0x05, r24	; 5
+ 174:	08 95       	ret
+
+00000176 <main>:
+}
+
+int main(void)
+{
+	timer0_init();
+ 176:	0e 94 99 00 	call	0x132	; 0x132 <timer0_init>
+	timer1_init();
+ 17a:	0e 94 9e 00 	call	0x13c	; 0x13c <timer1_init>
+	USART_Init (MYUBRR);
+ 17e:	87 e6       	ldi	r24, 0x67	; 103
+ 180:	90 e0       	ldi	r25, 0x00	; 0
+ 182:	0e 94 50 00 	call	0xa0	; 0xa0 <USART_Init>
+	DDRB = 0x02;				//set pin9 for output trigger
+ 186:	82 e0       	ldi	r24, 0x02	; 2
+ 188:	84 b9       	out	0x04, r24	; 4
+		{	
+			time_echo = Capt1;
+			serial_print(time_echo);
+			Capt1 = 0;			//clear timer value
+			Flag=0;				//clear status flag
+			TIMSK1|=(1<<ICIE1)|(1<<TOIE1);//enable input capture and overflow interrupts
+ 18a:	cf e6       	ldi	r28, 0x6F	; 111
+ 18c:	d0 e0       	ldi	r29, 0x00	; 0
+ 18e:	2f e7       	ldi	r18, 0x7F	; 127
+ 190:	8a e1       	ldi	r24, 0x1A	; 26
+ 192:	96 e0       	ldi	r25, 0x06	; 6
+ 194:	21 50       	subi	r18, 0x01	; 1
+ 196:	80 40       	sbci	r24, 0x00	; 0
+ 198:	90 40       	sbci	r25, 0x00	; 0
+ 19a:	e1 f7       	brne	.-8      	; 0x194 <main+0x1e>
+ 19c:	00 c0       	rjmp	.+0      	; 0x19e <main+0x28>
+ 19e:	00 00       	nop
+	USART_Init (MYUBRR);
+	DDRB = 0x02;				//set pin9 for output trigger
+    while (1) 
+    {
+		_delay_ms(2000);
+		if (TCNT0 >= 20)		//send trigger signal 10us
+ 1a0:	86 b5       	in	r24, 0x26	; 38
+ 1a2:	84 31       	cpi	r24, 0x14	; 20
+ 1a4:	18 f0       	brcs	.+6      	; 0x1ac <main+0x36>
+		{
+			send_trigger();
+ 1a6:	0e 94 aa 00 	call	0x154	; 0x154 <send_trigger>
+			TCNT0 = 0;			// reset counter
+ 1aa:	16 bc       	out	0x26, r1	; 38
+		}
+
+		if(Flag==2)				//check state captured
+ 1ac:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Flag>
+ 1b0:	82 30       	cpi	r24, 0x02	; 2
+ 1b2:	69 f7       	brne	.-38     	; 0x18e <main+0x18>
+		{	
+			time_echo = Capt1;
+ 1b4:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <Capt1>
+ 1b8:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <Capt1+0x1>
+ 1bc:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <_edata+0x1>
+ 1c0:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <_edata>
+			serial_print(time_echo);
+ 1c4:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <_edata>
+ 1c8:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <_edata+0x1>
+ 1cc:	0e 94 60 00 	call	0xc0	; 0xc0 <serial_print>
+			Capt1 = 0;			//clear timer value
+ 1d0:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <Capt1+0x1>
+ 1d4:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <Capt1>
+			Flag=0;				//clear status flag
+ 1d8:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <Flag>
+			TIMSK1|=(1<<ICIE1)|(1<<TOIE1);//enable input capture and overflow interrupts
+ 1dc:	88 81       	ld	r24, Y
+ 1de:	81 62       	ori	r24, 0x21	; 33
+ 1e0:	88 83       	st	Y, r24
+ 1e2:	d5 cf       	rjmp	.-86     	; 0x18e <main+0x18>
+
+000001e4 <__vector_10>:
+		}
+    }
+}
+
+ISR(TIMER1_CAPT_vect) //capture ISR
+{
+ 1e4:	1f 92       	push	r1
+ 1e6:	0f 92       	push	r0
+ 1e8:	0f b6       	in	r0, 0x3f	; 63
+ 1ea:	0f 92       	push	r0
+ 1ec:	11 24       	eor	r1, r1
+ 1ee:	8f 93       	push	r24
+ 1f0:	9f 93       	push	r25
+ 1f2:	ef 93       	push	r30
+ 1f4:	ff 93       	push	r31
+	if (Flag==0) //detect first rising edge
+ 1f6:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Flag>
+ 1fa:	81 11       	cpse	r24, r1
+ 1fc:	09 c0       	rjmp	.+18     	; 0x210 <__vector_10+0x2c>
+	{
+		TCNT1=0; //Set Initial Timer value
+ 1fe:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7e0085>
+ 202:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7e0084>
+		TCCR1B &= ~(1<<ICES1);//change capture on falling edge
+ 206:	e1 e8       	ldi	r30, 0x81	; 129
+ 208:	f0 e0       	ldi	r31, 0x00	; 0
+ 20a:	80 81       	ld	r24, Z
+ 20c:	8f 7b       	andi	r24, 0xBF	; 191
+ 20e:	80 83       	st	Z, r24
+	}
+	if (Flag==1)
+ 210:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Flag>
+ 214:	81 30       	cpi	r24, 0x01	; 1
+ 216:	91 f4       	brne	.+36     	; 0x23c <__vector_10+0x58>
+	{
+		Capt1 = ICR1; //capture timer
+ 218:	80 91 86 00 	lds	r24, 0x0086	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
+ 21c:	90 91 87 00 	lds	r25, 0x0087	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
+ 220:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <Capt1+0x1>
+ 224:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <Capt1>
+		TCCR1B |= (1<<ICES1);//change capture on rising edge
+ 228:	e1 e8       	ldi	r30, 0x81	; 129
+ 22a:	f0 e0       	ldi	r31, 0x00	; 0
+ 22c:	80 81       	ld	r24, Z
+ 22e:	80 64       	ori	r24, 0x40	; 64
+ 230:	80 83       	st	Z, r24
+		TIMSK1 &= ~((1<<ICIE1)|(1<<TOIE1));//stop input capture and overflow interrupts
+ 232:	ef e6       	ldi	r30, 0x6F	; 111
+ 234:	f0 e0       	ldi	r31, 0x00	; 0
+ 236:	80 81       	ld	r24, Z
+ 238:	8e 7d       	andi	r24, 0xDE	; 222
+ 23a:	80 83       	st	Z, r24
+	}
+	Flag++; //increment Flag
+ 23c:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <Flag>
+ 240:	8f 5f       	subi	r24, 0xFF	; 255
+ 242:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <Flag>
+ 246:	ff 91       	pop	r31
+ 248:	ef 91       	pop	r30
+ 24a:	9f 91       	pop	r25
+ 24c:	8f 91       	pop	r24
+ 24e:	0f 90       	pop	r0
+ 250:	0f be       	out	0x3f, r0	; 63
+ 252:	0f 90       	pop	r0
+ 254:	1f 90       	pop	r1
+ 256:	18 95       	reti
+
+00000258 <__umulhisi3>:
+ 258:	a2 9f       	mul	r26, r18
+ 25a:	b0 01       	movw	r22, r0
+ 25c:	b3 9f       	mul	r27, r19
+ 25e:	c0 01       	movw	r24, r0
+ 260:	a3 9f       	mul	r26, r19
+ 262:	70 0d       	add	r23, r0
+ 264:	81 1d       	adc	r24, r1
+ 266:	11 24       	eor	r1, r1
+ 268:	91 1d       	adc	r25, r1
+ 26a:	b2 9f       	mul	r27, r18
+ 26c:	70 0d       	add	r23, r0
+ 26e:	81 1d       	adc	r24, r1
+ 270:	11 24       	eor	r1, r1
+ 272:	91 1d       	adc	r25, r1
+ 274:	08 95       	ret
+
+00000276 <__itoa_ncheck>:
+ 276:	bb 27       	eor	r27, r27
+ 278:	4a 30       	cpi	r20, 0x0A	; 10
+ 27a:	31 f4       	brne	.+12     	; 0x288 <__itoa_ncheck+0x12>
+ 27c:	99 23       	and	r25, r25
+ 27e:	22 f4       	brpl	.+8      	; 0x288 <__itoa_ncheck+0x12>
+ 280:	bd e2       	ldi	r27, 0x2D	; 45
+ 282:	90 95       	com	r25
+ 284:	81 95       	neg	r24
+ 286:	9f 4f       	sbci	r25, 0xFF	; 255
+ 288:	0c 94 47 01 	jmp	0x28e	; 0x28e <__utoa_common>
+
+0000028c <__utoa_ncheck>:
+ 28c:	bb 27       	eor	r27, r27
+
+0000028e <__utoa_common>:
+ 28e:	fb 01       	movw	r30, r22
+ 290:	55 27       	eor	r21, r21
+ 292:	aa 27       	eor	r26, r26
+ 294:	88 0f       	add	r24, r24
+ 296:	99 1f       	adc	r25, r25
+ 298:	aa 1f       	adc	r26, r26
+ 29a:	a4 17       	cp	r26, r20
+ 29c:	10 f0       	brcs	.+4      	; 0x2a2 <__utoa_common+0x14>
+ 29e:	a4 1b       	sub	r26, r20
+ 2a0:	83 95       	inc	r24
+ 2a2:	50 51       	subi	r21, 0x10	; 16
+ 2a4:	b9 f7       	brne	.-18     	; 0x294 <__utoa_common+0x6>
+ 2a6:	a0 5d       	subi	r26, 0xD0	; 208
+ 2a8:	aa 33       	cpi	r26, 0x3A	; 58
+ 2aa:	08 f0       	brcs	.+2      	; 0x2ae <__utoa_common+0x20>
+ 2ac:	a9 5d       	subi	r26, 0xD9	; 217
+ 2ae:	a1 93       	st	Z+, r26
+ 2b0:	00 97       	sbiw	r24, 0x00	; 0
+ 2b2:	79 f7       	brne	.-34     	; 0x292 <__utoa_common+0x4>
+ 2b4:	b1 11       	cpse	r27, r1
+ 2b6:	b1 93       	st	Z+, r27
+ 2b8:	11 92       	st	Z+, r1
+ 2ba:	cb 01       	movw	r24, r22
+ 2bc:	0c 94 60 01 	jmp	0x2c0	; 0x2c0 <strrev>
+
+000002c0 <strrev>:
+ 2c0:	dc 01       	movw	r26, r24
+ 2c2:	fc 01       	movw	r30, r24
+ 2c4:	67 2f       	mov	r22, r23
+ 2c6:	71 91       	ld	r23, Z+
+ 2c8:	77 23       	and	r23, r23
+ 2ca:	e1 f7       	brne	.-8      	; 0x2c4 <strrev+0x4>
+ 2cc:	32 97       	sbiw	r30, 0x02	; 2
+ 2ce:	04 c0       	rjmp	.+8      	; 0x2d8 <strrev+0x18>
+ 2d0:	7c 91       	ld	r23, X
+ 2d2:	6d 93       	st	X+, r22
+ 2d4:	70 83       	st	Z, r23
+ 2d6:	62 91       	ld	r22, -Z
+ 2d8:	ae 17       	cp	r26, r30
+ 2da:	bf 07       	cpc	r27, r31
+ 2dc:	c8 f3       	brcs	.-14     	; 0x2d0 <strrev+0x10>
+ 2de:	08 95       	ret
+
+000002e0 <_exit>:
+ 2e0:	f8 94       	cli
+
+000002e2 <__stop_program>:
+ 2e2:	ff cf       	rjmp	.-2      	; 0x2e2 <__stop_program>
